@@ -35,7 +35,8 @@ entity DFFHighCE is
   Port ( CLK : in STD_LOGIC;  -- Define the clock input
          D : in STD_LOGIC;
          Q : out STD_LOGIC;
-         ENABLE: in STD_LOGIC);
+         ENABLE: in STD_LOGIC;
+         RESET: in STD_LOGIC);
 end DFFHighCE;
 
 architecture Behavioral of DFFHighCE is
@@ -44,8 +45,10 @@ begin
 
 process (CLK)
 begin
-      if rising_edge (CLK) then
-        if ENABLE = '1' then
+      if rising_edge(CLK) then
+        if RESET='1' then
+           Q <= '0';
+        elsif ENABLE = '1' then
            Q <= D;
         end if;
       end if;

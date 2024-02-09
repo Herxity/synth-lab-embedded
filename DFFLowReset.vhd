@@ -32,9 +32,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity DFFLowReset is
-  Port ( CLK : in STD_LOGIC;  -- Define the clock input
-         D : in STD_LOGIC;
-         Q : out STD_LOGIC);
+  Port ( CLK : in std_LOGIC;  -- Define the clock input
+         D : in STD_LOGiC;
+         Q : out std_logic;
+         RESET : in std_logic);
 end DFFLowReset;
 
 architecture Behavioral of DFFLowReset is
@@ -45,7 +46,11 @@ begin
 process (CLK)
 begin
       if rising_edge(CLK) then
-         Q <= D;
+        if RESET = '1' then
+           Q <= '0';
+        else
+           Q <= D;
+        end if;
       end if;
 end process;
 

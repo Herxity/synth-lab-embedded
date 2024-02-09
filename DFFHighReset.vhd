@@ -34,7 +34,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity DFFHighReset is
   Port ( CLK : in STD_LOGIC;  -- Define the clock input
          D : in STD_LOGIC;
-         Q : out STD_LOGIC);
+         Q : out STD_LOGIC;
+         RESET : in STD_LOGIC);
 end DFFHighReset;
 
 architecture Behavioral of DFFHighReset is
@@ -44,7 +45,11 @@ begin
 process (CLK)
 begin
       if rising_edge(CLK) then
+         if RESET = '1' then
+           Q <= '0';
+        else
          Q <= D;
+        end if;
       end if;
 end process;
 
